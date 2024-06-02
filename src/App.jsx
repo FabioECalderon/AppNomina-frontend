@@ -3,7 +3,7 @@ import './App.css';
 function App() {
   return (
     <>
-      <p className="text-3xl font-bold underline">
+      <p className="text-2xl font-bold underline">
         Placeholder Frontend App nomina with Tailwind
       </p>
     </>
