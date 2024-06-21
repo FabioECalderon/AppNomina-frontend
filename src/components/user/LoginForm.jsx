@@ -15,27 +15,41 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 const formSchema = z.object({
-  username: z
+  email: z.string().email(),
+  password: z
     .string()
-    .min(6, {
-      message: 'El correo debe tener al menos 6 caracteres.',
+    .min(8, {
+      message: 'La contraseña debe tener al menos 8 caracteres.',
     })
     .max(30, {
       message: 'Se excedió el número máximo de caracteres',
     }),
-  password: z.string().min(8),
 });
 
 export default function LoginForm() {
-  const { form } = useForm();
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      console.log(data);
+    } catch (error) {
+      form.setError('root', { message: 'El correo o contraseña es inválido' });
+    }
   };
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <FormDescription className="text-xl text-left text-bold">
+          Ingresar a AppNomina
+        </FormDescription>
         <FormField
           control={form.control}
           name="email"
@@ -44,14 +58,11 @@ export default function LoginForm() {
               <FormLabel>Correo</FormLabel>
               <FormControl>
                 <Input
-                  {...form.register('email')}
-                  placeholder=" email@address.com"
+                  placeholder="email@address.com"
                   {...field}
+                  type="email"
                 />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -63,20 +74,15 @@ export default function LoginForm() {
             <FormItem>
               <FormLabel>Contraseña</FormLabel>
               <FormControl>
-                <Input
-                  {...form.register('password')}
-                  placeholder=" ********** "
-                  {...field}
-                />
+                <Input placeholder="**********" {...field} type="password" />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button disabled={form.isSubmitting} type="submit">
+          {form.isSubmitting ? 'Enviando...' : 'Ingresar'}
+        </Button>
       </form>
     </Form>
   );

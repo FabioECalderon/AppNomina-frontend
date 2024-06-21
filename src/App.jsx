@@ -24,10 +24,6 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <p className="text-2xl font-bold underline">
-        Placeholder Frontend App nomina with Tailwind
-      </p>
-      <Button>Click me</Button>
       <RouterProvider router={router} />
     </>
   );
