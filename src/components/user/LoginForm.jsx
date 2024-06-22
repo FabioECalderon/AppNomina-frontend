@@ -39,15 +39,18 @@ export default function LoginForm() {
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       console.log(data);
-    } catch (error) {
+    } catch (e) {
       form.setError('root', { message: 'El correo o contraseña es inválido' });
     }
   };
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormDescription className="text-xl text-left text-bold">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="w-full max-w-[450px]  mx-auto p-4 flex flex-col gap-6 bg-blue-50"
+      >
+        <FormDescription className="text-2xl text-left pt-10 text-bold">
           Ingresar a AppNomina
         </FormDescription>
         <FormField
@@ -55,7 +58,9 @@ export default function LoginForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Correo</FormLabel>
+              <FormLabel>
+                <p className="text-left text-l">Correo</p>
+              </FormLabel>
               <FormControl>
                 <Input
                   placeholder="email@address.com"
@@ -72,15 +77,17 @@ export default function LoginForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Contraseña</FormLabel>
+              <FormLabel>
+                <p className="text-left text-l">Contraseña</p>
+              </FormLabel>
               <FormControl>
-                <Input placeholder="**********" {...field} type="password" />
+                <Input placeholder="●●●●●●●●" {...field} type="password" />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button disabled={form.isSubmitting} type="submit">
+        <Button className="w- " disabled={form.isSubmitting} type="submit">
           {form.isSubmitting ? 'Enviando...' : 'Ingresar'}
         </Button>
       </form>
