@@ -1,3 +1,9 @@
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Link, NavLink, Navigate, redirect } from 'react-router-dom';
+import { MailIcon } from 'lucide-react';
+
 import {
   Form,
   FormControl,
@@ -9,11 +15,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { NavLink } from 'react-router-dom';
+import { PasswordInput } from '../ui/password-input';
 
 const formSchema = z.object({
   emailAddress: z.string().email('Introduzca su correo registrado.'),
@@ -45,6 +47,10 @@ export default function LoginForm() {
     }
   };
 
+  function goToRegister() {
+    redirect('/register');
+  }
+
   return (
     <Form {...form}>
       <form
@@ -67,6 +73,7 @@ export default function LoginForm() {
                   placeholder="email@address.com"
                   {...field}
                   type="email"
+                  suffix={<MailIcon />}
                 />
               </FormControl>
               <FormMessage />
@@ -82,7 +89,7 @@ export default function LoginForm() {
                 <p className="text-left text-l">Contraseña</p>
               </FormLabel>
               <FormControl>
-                <Input placeholder="●●●●●●●●" {...field} type="password" />
+                <PasswordInput placeholder="●●●●●●●●" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -90,15 +97,17 @@ export default function LoginForm() {
         />
         <Button
           className=" bg-orange-400 hover:bg-orange-500"
-          disabled={form.isSubmitting}
+          disabled={form.formState.isSubmitting}
           type="submit"
         >
-          {form.isSubmitting ? 'Enviando...' : 'Ingresar'}
+          {form.formState.isSubmitting ? 'Enviando...' : 'Ingresar'}
         </Button>
-        <NavLink>
-          <Button className="w-full text-blue-950 bg-white hover:bg-orange-200 border-blue-950">
-            Crear cuenta
-          </Button>
+        <hr />
+        <NavLink
+          to="/register"
+          className="rounded-md px-4 py-2 text-blue-950 bg-white hover:bg-blue-200 border-blue"
+        >
+          Si eres nuevo registrate aqui.
         </NavLink>
       </form>
     </Form>
