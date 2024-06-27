@@ -96,7 +96,7 @@ export default function LoginForm() {
           )}
         />
         <Button
-          className=" bg-orange-400 hover:bg-orange-500"
+          className=" bg-yellow-500 hover:bg-yellow-600"
           disabled={form.formState.isSubmitting}
           type="submit"
         >
