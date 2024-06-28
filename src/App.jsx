@@ -9,11 +9,17 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import NotFoundPage from './pages/NotFoundPage';
 import EmployeeDetail from './pages/EmployeeDetail';
+import { UserProvider } from './containers/UserContext';
+import ProtectedRoute from './containers/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <EmployeesHome />,
+    element: (
+      <ProtectedRoute>
+        <EmployeesHome />
+      </ProtectedRoute>
+    ),
     errorElement: <NotFoundPage />,
   },
   { path: '/login', element: <Login /> },
@@ -24,7 +30,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <UserProvider>
+        <RouterProvider router={router} />
+      </UserProvider>
     </>
   );
 }
