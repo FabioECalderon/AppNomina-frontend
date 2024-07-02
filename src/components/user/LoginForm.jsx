@@ -55,7 +55,7 @@ export default function LoginForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full h-screen max-w-[450px]  mx-auto p-4 flex flex-col gap-6 bg-white"
+        className="w-full h-screen max-w-[450px]  mx-auto p-4 flex flex-col gap-6 text-skin-base bg-skin-fill-alt"
       >
         <FormDescription className="text-2xl text-left pt-10 text-bold">
           Ingresar a AppNomina
@@ -89,14 +89,14 @@ export default function LoginForm() {
                 <p className="text-left text-l">Contraseña</p>
               </FormLabel>
               <FormControl>
-                <PasswordInput placeholder="●●●●●●●●" {...field} />
+                <PasswordInput placeholder="••••••••" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button
-          className=" bg-yellow-500 hover:bg-yellow-600"
+          className=" bg-skin-accent hover:bg-skin-accent-hover"
           disabled={form.formState.isSubmitting}
           type="submit"
         >
@@ -105,7 +105,7 @@ export default function LoginForm() {
         <hr />
         <NavLink
           to="/register"
-          className="rounded-md px-4 py-2 text-blue-950 bg-white hover:bg-blue-200 border-blue"
+          className="rounded-md px-4 py-2 text-blue-950 bg-skin-fill-alt hover:bg-skin-fill"
         >
           Si eres nuevo registrate aqui.
         </NavLink>
