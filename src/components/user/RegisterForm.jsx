@@ -36,10 +36,70 @@ const formSchema = z.object({
   confirmPassword: z.string(),
 });
 
+// TODO validaciones de confirmacion de password, opciones para tipo de documento
+
 export default function RegisterForm() {
   return (
     <div>
-      <Form></Form>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="w-full h-screen max-w-[450px]  mx-auto p-4 flex flex-col gap-6 text-skin-base bg-skin-fill-alt"
+        >
+          <FormDescription className="text-2xl text-left pt-10 text-bold">
+            Ingresar a AppNomina
+          </FormDescription>
+          <FormField
+            control={form.control}
+            name="emailAddress"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  <p className="text-left text-l">Correo</p>
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="email@address.com"
+                    {...field}
+                    type="email"
+                    suffix={<MailIcon />}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  <p className="text-left text-l">Contraseña</p>
+                </FormLabel>
+                <FormControl>
+                  <PasswordInput placeholder="••••••••" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button
+            className=" bg-skin-accent hover:bg-skin-accent-hover"
+            disabled={form.formState.isSubmitting}
+            type="submit"
+          >
+            {form.formState.isSubmitting ? 'Enviando...' : 'Ingresar'}
+          </Button>
+          <hr />
+          <NavLink
+            to="/register"
+            className="rounded-md px-4 py-2 text-blue-950 bg-skin-fill-alt hover:bg-skin-fill"
+          >
+            Si eres nuevo registrate aqui.
+          </NavLink>
+        </form>
+      </Form>
     </div>
   );
 }
