@@ -47,10 +47,6 @@ export default function LoginForm() {
     }
   };
 
-  function goToRegister() {
-    redirect('/register');
-  }
-
   return (
     <Form {...form}>
       <form
