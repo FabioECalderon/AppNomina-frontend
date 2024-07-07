@@ -65,58 +65,60 @@ export default function RegisterForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full h-screen max-w-[450px]  mx-auto p-4 flex flex-col gap-6 text-skin-base bg-skin-fill-alt"
+          className="w-full h-screen max-w-[900px]  mx-auto p-4 flex flex-col gap-6 text-skin-base bg-skin-fill-alt"
         >
           <FormDescription className="text-2xl text-left pt-10 text-bold">
             Crea una cuenta en AppNomina
           </FormDescription>
-          <FormField
-            control={form.control}
-            name="firstName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  <p className="text-left text-l">Correo</p>
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Nombre"
-                    {...field}
-                    type="text"
-                    suffix={<MailIcon />}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="lastName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  <p className="text-left text-l">Correo</p>
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Apellido"
-                    {...field}
-                    type="text"
-                    suffix={<MailIcon />}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="flex lg-flex-col">
+            <FormField
+              control={form.control}
+              name="firstName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    <p className="text-left text-l">Nombre</p>
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Nombre"
+                      {...field}
+                      type="text"
+                      suffix=""
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="lastName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    <p className="text-left text-l">Apellido</p>
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Apellido"
+                      {...field}
+                      type="text"
+                      suffix={<MailIcon />}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
           <FormField
             control={form.control}
             name="idType"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  <p className="text-left text-l">Correo</p>
+                  <p className="text-left text-l">Tipo de documento</p>
                 </FormLabel>
                 <FormControl>
                   <Input
