@@ -211,8 +211,8 @@ export default function RegisterForm() {
           </Button>
           <hr />
           <NavLink
-            to="/register"
-            className="rounded-md px-4 py-2 text-blue-950 bg-skin-fill-alt hover:bg-skin-fill"
+            to="/login"
+            className="rounded-md py-2 py-2 text-blue-950 bg-skin-fill-alt hover:bg-skin-fill"
           >
             Si ya tienes una cuenta ingresa aqui.
           </NavLink>
