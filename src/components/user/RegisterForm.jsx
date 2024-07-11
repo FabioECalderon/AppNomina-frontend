@@ -1,8 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Link, NavLink, Navigate, redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { MailIcon } from 'lucide-react';
+import { UserCircle } from 'lucide-react';
 
 import {
   Form,
@@ -70,10 +71,11 @@ export default function RegisterForm() {
           <FormDescription className="text-2xl text-left pt-10 text-bold">
             Crea una cuenta en AppNomina
           </FormDescription>
-          <div className="flex lg-flex-col">
+          <div className="flex gap-4 flex-col sm:flex-row">
             <FormField
               control={form.control}
               name="firstName"
+              className="min-w-[350px]"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
@@ -84,7 +86,7 @@ export default function RegisterForm() {
                       placeholder="Nombre"
                       {...field}
                       type="text"
-                      suffix=""
+                      suffix={<UserCircle />}
                     />
                   </FormControl>
                   <FormMessage />
@@ -104,6 +106,70 @@ export default function RegisterForm() {
                       placeholder="Apellido"
                       {...field}
                       type="text"
+                      suffix={<UserCircle />}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="flex gap-4 flex-col sm:flex-row">
+            <div>
+              <FormField
+                control={form.control}
+                name="idType"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      <p className="text-left text-l">Tipo de documento</p>
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="tipo de documento"
+                        {...field}
+                        type="text"
+                        suffix=""
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="idNumber"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      <p className="text-left text-l">Número de documento</p>
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="12345678"
+                        {...field}
+                        type="number"
+                        suffix={<MailIcon />}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <FormField
+              control={form.control}
+              name="emailAddress"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    <p className="text-left text-l">Correo</p>
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="email@address.com"
+                      {...field}
+                      type="email"
                       suffix={<MailIcon />}
                     />
                   </FormControl>
@@ -112,96 +178,38 @@ export default function RegisterForm() {
               )}
             />
           </div>
-          <FormField
-            control={form.control}
-            name="idType"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  <p className="text-left text-l">Tipo de documento</p>
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="tipo de documento"
-                    {...field}
-                    type="text"
-                    suffix={<MailIcon />}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="idNumber"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  <p className="text-left text-l">Número de documento</p>
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="12345678"
-                    {...field}
-                    type="number"
-                    suffix={<MailIcon />}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="emailAddress"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  <p className="text-left text-l">Correo</p>
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="email@address.com"
-                    {...field}
-                    type="email"
-                    suffix={<MailIcon />}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  <p className="text-left text-l">Contraseña</p>
-                </FormLabel>
-                <FormControl>
-                  <PasswordInput placeholder="••••••••" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="confirmPassword"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  <p className="text-left text-l">Confirmar contraseña</p>
-                </FormLabel>
-                <FormControl>
-                  <PasswordInput placeholder="••••••••" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="flex gap-4 flex-col sm:flex-row">
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    <p className="text-left text-l">Contraseña</p>
+                  </FormLabel>
+                  <FormControl>
+                    <PasswordInput placeholder="••••••••" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="confirmPassword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    <p className="text-left text-l">Confirmar contraseña</p>
+                  </FormLabel>
+                  <FormControl>
+                    <PasswordInput placeholder="••••••••" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
           <Button
             className=" bg-skin-accent hover:bg-skin-accent-hover"
             disabled={form.formState.isSubmitting}
