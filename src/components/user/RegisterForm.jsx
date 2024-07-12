@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { NavLink } from 'react-router-dom';
 import { MailIcon } from 'lucide-react';
 import { UserCircle } from 'lucide-react';
+import { UserSquare } from 'lucide-react';
 
 import {
   Form,
@@ -66,16 +67,15 @@ export default function RegisterForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full h-screen max-w-[900px]  mx-auto p-4 flex flex-col gap-6 text-skin-base bg-skin-fill-alt"
+          className="w-full h-screen max-w-[900px] mx-auto p-4 flex flex-col gap-6 text-skin-base bg-skin-fill-alt"
         >
           <FormDescription className="text-2xl text-left pt-10 text-bold">
             Crea una cuenta en AppNomina
           </FormDescription>
-          <div className="flex gap-4 flex-col sm:flex-row">
+          <div className="flex gap-8 flex-col sm:flex-row">
             <FormField
               control={form.control}
               name="firstName"
-              className="min-w-[350px]"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
@@ -86,6 +86,7 @@ export default function RegisterForm() {
                       placeholder="Nombre"
                       {...field}
                       type="text"
+                      className="sm:min-w-max"
                       suffix={<UserCircle />}
                     />
                   </FormControl>
@@ -106,6 +107,7 @@ export default function RegisterForm() {
                       placeholder="Apellido"
                       {...field}
                       type="text"
+                      className=""
                       suffix={<UserCircle />}
                     />
                   </FormControl>
@@ -114,8 +116,8 @@ export default function RegisterForm() {
               )}
             />
           </div>
-          <div className="flex gap-4 flex-col sm:flex-row">
-            <div>
+          <div className="flex gap-8 flex-col sm:flex-row">
+            <div className="flex gap-4">
               <FormField
                 control={form.control}
                 name="idType"
@@ -126,9 +128,9 @@ export default function RegisterForm() {
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="tipo de documento"
                         {...field}
                         type="text"
+                        className="w-[120px]"
                         suffix=""
                       />
                     </FormControl>
@@ -149,7 +151,8 @@ export default function RegisterForm() {
                         placeholder="12345678"
                         {...field}
                         type="number"
-                        suffix={<MailIcon />}
+                        className="min-w-[120px]"
+                        suffix={<UserSquare />}
                       />
                     </FormControl>
                     <FormMessage />
@@ -178,7 +181,7 @@ export default function RegisterForm() {
               )}
             />
           </div>
-          <div className="flex gap-4 flex-col sm:flex-row">
+          <div className="flex gap-8 flex-col sm:flex-row">
             <FormField
               control={form.control}
               name="password"
@@ -210,20 +213,21 @@ export default function RegisterForm() {
               )}
             />
           </div>
-          <Button
-            className=" bg-skin-accent hover:bg-skin-accent-hover"
-            disabled={form.formState.isSubmitting}
-            type="submit"
-          >
-            {form.formState.isSubmitting ? 'Enviando...' : 'Crear cuenta'}
-          </Button>
-          <hr />
-          <NavLink
-            to="/login"
-            className="rounded-md py-2 py-2 text-blue-950 bg-skin-fill-alt hover:bg-skin-fill"
-          >
-            Si ya tienes una cuenta ingresa aqui.
-          </NavLink>
+          <div className="flex gap-8 flex-col sm:flex-row">
+            <Button
+              className=" bg-skin-accent hover:bg-skin-accent-hover"
+              disabled={form.formState.isSubmitting}
+              type="submit"
+            >
+              {form.formState.isSubmitting ? 'Enviando...' : 'Crear cuenta'}
+            </Button>
+            <NavLink
+              to="/login"
+              className="rounded-md p-2 text-blue-950 bg-skin-fill-alt hover:bg-skin-fill"
+            >
+              Ir al registro
+            </NavLink>
+          </div>
         </form>
       </Form>
     </div>
