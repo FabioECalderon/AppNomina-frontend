@@ -20,10 +20,10 @@ import { Button } from '@/components/ui/button';
 import { PasswordInput } from '../ui/password-input';
 
 const formSchema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
+  firstName: z.string('El nombre es requerido.'),
+  lastName: z.string('El apellido es requerido.'),
   idType: z.string(),
-  idNumber: z.number(
+  idNumber: z.string(
     'Introduzca el número de documento sin puntos ni espacios.',
   ),
   emailAddress: z.string().email('Introduzca su correo registrado.'),
@@ -33,7 +33,7 @@ const formSchema = z.object({
       message: 'La contraseña debe tener al menos 8 caracteres.',
     })
     .max(30, {
-      message: 'Se excedió el número máximo de caracteres.',
+      message: 'Se excedió el número máximo de caractéres.',
     }),
   confirmPassword: z.string(),
 });
@@ -72,7 +72,7 @@ export default function RegisterForm() {
           <FormDescription className="text-2xl text-left pt-10 text-bold">
             Crea una cuenta en AppNomina
           </FormDescription>
-          <div className="flex gap-8 flex-col sm:flex-row">
+          <div className="flex gap-8 flex-col sm:flex-row sm:justify-center">
             <FormField
               control={form.control}
               name="firstName"
@@ -86,7 +86,7 @@ export default function RegisterForm() {
                       placeholder="Nombre"
                       {...field}
                       type="text"
-                      className="sm:min-w-max"
+                      className="sm:w-[336px]"
                       suffix={<UserCircle />}
                     />
                   </FormControl>
@@ -107,7 +107,7 @@ export default function RegisterForm() {
                       placeholder="Apellido"
                       {...field}
                       type="text"
-                      className=""
+                      className="sm:w-[336px]"
                       suffix={<UserCircle />}
                     />
                   </FormControl>
@@ -116,7 +116,7 @@ export default function RegisterForm() {
               )}
             />
           </div>
-          <div className="flex gap-8 flex-col sm:flex-row">
+          <div className="flex gap-8 flex-col sm:flex-row sm:justify-center">
             <div className="flex gap-4">
               <FormField
                 control={form.control}
@@ -173,6 +173,7 @@ export default function RegisterForm() {
                       placeholder="email@address.com"
                       {...field}
                       type="email"
+                      className="sm:w-[336px]"
                       suffix={<MailIcon />}
                     />
                   </FormControl>
@@ -181,7 +182,7 @@ export default function RegisterForm() {
               )}
             />
           </div>
-          <div className="flex gap-8 flex-col sm:flex-row">
+          <div className="flex gap-8 flex-col sm:flex-row sm:justify-center">
             <FormField
               control={form.control}
               name="password"
@@ -191,7 +192,11 @@ export default function RegisterForm() {
                     <p className="text-left text-l">Contraseña</p>
                   </FormLabel>
                   <FormControl>
-                    <PasswordInput placeholder="••••••••" {...field} />
+                    <PasswordInput
+                      className="sm:w-[336px]"
+                      placeholder="••••••••"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -206,14 +211,18 @@ export default function RegisterForm() {
                     <p className="text-left text-l">Confirmar contraseña</p>
                   </FormLabel>
                   <FormControl>
-                    <PasswordInput placeholder="••••••••" {...field} />
+                    <PasswordInput
+                      className="sm:w-[336px]"
+                      placeholder="••••••••"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
           </div>
-          <div className="flex gap-8 flex-col sm:flex-row">
+          <div className=" pb-8 flex items-center gap-8 flex-col sm:flex-row sm:justify-center ">
             <Button
               className=" bg-skin-accent hover:bg-skin-accent-hover"
               disabled={form.formState.isSubmitting}
