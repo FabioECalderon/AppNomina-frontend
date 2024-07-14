@@ -86,7 +86,7 @@ export default function RegisterForm() {
                       placeholder="Nombre"
                       {...field}
                       type="text"
-                      className="sm:w-[336px]"
+                      className="sm:w-[260px] md:w-[336px]"
                       suffix={<UserCircle />}
                     />
                   </FormControl>
@@ -107,7 +107,7 @@ export default function RegisterForm() {
                       placeholder="Apellido"
                       {...field}
                       type="text"
-                      className="sm:w-[336px]"
+                      className="sm:w-[260px] md:w-[336px]"
                       suffix={<UserCircle />}
                     />
                   </FormControl>
@@ -130,7 +130,7 @@ export default function RegisterForm() {
                       <Input
                         {...field}
                         type="text"
-                        className="w-[120px]"
+                        className="grow-0 w-[120px]"
                         suffix=""
                       />
                     </FormControl>
@@ -151,7 +151,7 @@ export default function RegisterForm() {
                         placeholder="12345678"
                         {...field}
                         type="number"
-                        className="min-w-[120px]"
+                        className=" grow min-w-[120px] max-w-[500] sm:w-[125px] md:w-[205px]"
                         suffix={<UserSquare />}
                       />
                     </FormControl>
@@ -173,7 +173,7 @@ export default function RegisterForm() {
                       placeholder="email@address.com"
                       {...field}
                       type="email"
-                      className="sm:w-[336px]"
+                      className="sm:w-[260px] md:w-[336px]"
                       suffix={<MailIcon />}
                     />
                   </FormControl>
@@ -193,7 +193,7 @@ export default function RegisterForm() {
                   </FormLabel>
                   <FormControl>
                     <PasswordInput
-                      className="sm:w-[336px]"
+                      className="sm:w-[260px] md:w-[336px]"
                       placeholder="••••••••"
                       {...field}
                     />
@@ -212,7 +212,7 @@ export default function RegisterForm() {
                   </FormLabel>
                   <FormControl>
                     <PasswordInput
-                      className="sm:w-[336px]"
+                      className="sm:w-[260px] md:w-[336px]"
                       placeholder="••••••••"
                       {...field}
                     />
@@ -224,7 +224,7 @@ export default function RegisterForm() {
           </div>
           <div className=" pb-8 flex items-center gap-8 flex-col sm:flex-row sm:justify-center ">
             <Button
-              className=" bg-skin-accent hover:bg-skin-accent-hover"
+              className=" sm:grow bg-skin-accent hover:bg-skin-accent-hover"
               disabled={form.formState.isSubmitting}
               type="submit"
             >
@@ -232,7 +232,7 @@ export default function RegisterForm() {
             </Button>
             <NavLink
               to="/login"
-              className="rounded-md p-2 text-blue-950 bg-skin-fill-alt hover:bg-skin-fill"
+              className="sm:grow rounded-md p-2 text-blue-950 bg-skin-fill-alt hover:bg-skin-fill"
             >
               Ir al registro
             </NavLink>
