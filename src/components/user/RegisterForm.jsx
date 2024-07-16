@@ -117,7 +117,7 @@ export default function RegisterForm() {
             />
           </div>
           <div className="flex gap-8 flex-col sm:flex-row sm:justify-center">
-            <div className="flex gap-4">
+            <div className="flex gap-4 w-auto">
               <FormField
                 control={form.control}
                 name="idType"
@@ -151,7 +151,7 @@ export default function RegisterForm() {
                         placeholder="12345678"
                         {...field}
                         type="number"
-                        className=" grow min-w-[120px] max-w-[500] sm:w-[125px] md:w-[205px]"
+                        className=" w-auto sm:w-[125px] md:w-[205px]"
                         suffix={<UserSquare />}
                       />
                     </FormControl>
