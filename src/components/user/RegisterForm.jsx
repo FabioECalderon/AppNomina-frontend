@@ -127,7 +127,7 @@ export default function RegisterForm() {
                       <p className="text-left text-l">Tipo de documento</p>
                     </FormLabel>
                     <FormControl>
-                      {/* Selesct */}
+                      {/* Select */}
 
                       <Input
                         {...field}
