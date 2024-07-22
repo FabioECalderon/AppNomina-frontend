@@ -19,26 +19,31 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { PasswordInput } from '../ui/password-input';
 
-const formSchema = z.object({
-  firstName: z.string('El nombre es requerido.'),
-  lastName: z.string('El apellido es requerido.'),
-  idType: z.string(),
-  idNumber: z.string(
-    'Introduzca el número de documento sin puntos ni espacios.',
-  ),
-  emailAddress: z.string().email('Introduzca su correo registrado.'),
-  password: z
-    .string()
-    .min(8, {
-      message: 'La contraseña debe tener al menos 8 caracteres.',
-    })
-    .max(30, {
-      message: 'Se excedió el número máximo de caractéres.',
-    }),
-  confirmPassword: z.string(),
-});
-
-// TODO validaciones de confirmacion de password, opciones para tipo de documento
+const formSchema = z
+  .object({
+    firstName: z.string(),
+    lastName: z.string(),
+    idType: z.string(),
+    idNumber: z.string(
+      'Introduzca el número de documento sin puntos ni espacios.',
+    ),
+    emailAddress: z.string().email('Introduzca su correo registrado.'),
+    password: z
+      .string()
+      .min(8, {
+        message: 'La contraseña debe tener al menos 8 caracteres.',
+      })
+      .max(30, {
+        message: 'Se excedió el número máximo de caractéres.',
+      }),
+    confirmPassword: z.string('Campo requerido.'),
+  })
+  .refine(
+    (data) => {
+      return data.password === data.confirmPassword;
+    },
+    { message: 'Las contraseñas no son iguales.', path: ['confirmPassword'] },
+  );
 
 export default function RegisterForm() {
   const form = useForm({
