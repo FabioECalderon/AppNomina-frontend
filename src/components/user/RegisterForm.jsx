@@ -18,12 +18,19 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { PasswordInput } from '../ui/password-input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 const formSchema = z
   .object({
     firstName: z.string(),
     lastName: z.string(),
-    idType: z.string(),
+    idType: z.enum(['CC', 'CE', 'NIT']),
     idNumber: z.string(
       'Introduzca el número de documento sin puntos ni espacios.',
     ),
@@ -36,7 +43,7 @@ const formSchema = z
       .max(30, {
         message: 'Se excedió el número máximo de caractéres.',
       }),
-    confirmPassword: z.string('Campo requerido.'),
+    confirmPassword: z.string(),
   })
   .refine(
     (data) => {
@@ -51,7 +58,7 @@ export default function RegisterForm() {
     defaultValues: {
       firstName: '',
       lastName: '',
-      idType: '',
+      idType: 'CC',
       idNumber: '',
       emailAddress: '',
       password: '',
@@ -131,16 +138,18 @@ export default function RegisterForm() {
                     <FormLabel>
                       <p className="text-left text-l">Tipo de documento</p>
                     </FormLabel>
-                    <FormControl>
-                      {/* Select */}
-
-                      <Input
-                        {...field}
-                        type="text"
-                        className="grow-0 w-[120px]"
-                        suffix=""
-                      />
-                    </FormControl>
+                    <Select onValueChange={field.onchange}>
+                      <FormControl>
+                        <SelectTrigger {...field} className="grow-0 w-[120px]">
+                          <SelectValue placeholder="Seleccionar" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="CC">CC</SelectItem>
+                        <SelectItem value="CE">CE</SelectItem>
+                        <SelectItem value="NIT">NIT</SelectItem>
+                      </SelectContent>
+                    </Select>
                     <FormMessage />
                   </FormItem>
                 )}
