@@ -30,7 +30,9 @@ const formSchema = z
   .object({
     firstName: z.string(),
     lastName: z.string(),
-    idType: z.enum(['CC', 'CE', 'NIT']),
+    idType: z.enum(['CC', 'CE', 'NIT'], {
+      message: 'Seleccione el tipo de documento',
+    }),
     idNumber: z.string(
       'Introduzca el número de documento sin puntos ni espacios.',
     ),
