@@ -33,9 +33,11 @@ const formSchema = z
     idType: z.enum(['CC', 'CE', 'NIT'], {
       message: 'Seleccione el tipo de documento',
     }),
-    idNumber: z.string(
-      'Introduzca el número de documento sin puntos ni espacios.',
-    ),
+    idNumber: z
+      .string()
+      .min(5, {
+        message: 'Introduzca el número de documento sin puntos ni espacios.',
+      }),
     emailAddress: z.string().email('Introduzca su correo registrado.'),
     password: z
       .string()
