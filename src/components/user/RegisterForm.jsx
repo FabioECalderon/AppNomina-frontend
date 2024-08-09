@@ -28,16 +28,18 @@ import {
 
 const formSchema = z
   .object({
-    firstName: z.string(),
-    lastName: z.string(),
+    firstName: z.string().min(2, {
+      message: 'Su nombre debe tener al menos 2 caracteres',
+    }),
+    lastName: z.string().min(2, {
+      message: 'Su apellido debe tener al menos 2 caracteres',
+    }),
     idType: z.enum(['CC', 'CE', 'NIT'], {
       message: 'Seleccione el tipo de documento',
     }),
-    idNumber: z
-      .string()
-      .min(5, {
-        message: 'Introduzca el número de documento sin puntos ni espacios.',
-      }),
+    idNumber: z.string().min(5, {
+      message: 'Introduzca el número de documento sin puntos ni espacios.',
+    }),
     emailAddress: z.string().email('Introduzca su correo registrado.'),
     password: z
       .string()
