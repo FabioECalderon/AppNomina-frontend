@@ -29,10 +29,10 @@ import {
 const formSchema = z
   .object({
     firstName: z.string().min(2, {
-      message: 'Su nombre debe tener al menos 2 caracteres',
+      message: 'El nombre debe tener al menos 2 caracteres',
     }),
     lastName: z.string().min(2, {
-      message: 'Su apellido debe tener al menos 2 caracteres',
+      message: 'El apellido debe tener al menos 2 caracteres',
     }),
     idType: z.enum(['CC', 'CE', 'NIT'], {
       message: 'Seleccione el tipo de documento',
@@ -81,7 +81,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <div>
+    <>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -256,11 +256,11 @@ export default function RegisterForm() {
               to="/login"
               className="sm:grow rounded-md p-2 text-blue-950 bg-skin-fill-alt hover:bg-skin-fill"
             >
-              Ir al registro
+              Ir a inicio de sesión
             </NavLink>
           </div>
         </form>
       </Form>
-    </div>
+    </>
   );
 }

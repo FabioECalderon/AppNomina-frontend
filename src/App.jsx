@@ -1,6 +1,4 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
-import { Button } from './components/ui/button';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
