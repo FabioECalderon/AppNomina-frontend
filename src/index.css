@@ -12,3 +12,7 @@
     --color-accent-hover: #ff9a26;
   }
 }
+
+body {
+  background-color: var(--color-fill);
+}
