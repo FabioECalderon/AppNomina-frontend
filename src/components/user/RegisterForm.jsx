@@ -38,7 +38,7 @@ const formSchema = z
       message: 'Seleccione el tipo de documento',
     }),
     idNumber: z.string().min(5, {
-      message: 'Introduzca el número de documento sin puntos ni espacios.',
+      message: 'El documento debe tener al menos 5 dígitos.',
     }),
     emailAddress: z.string().email('Introduzca su correo registrado.'),
     password: z
@@ -64,7 +64,7 @@ export default function RegisterForm() {
     defaultValues: {
       firstName: '',
       lastName: '',
-      idType: 'CC',
+      idType: '',
       idNumber: '',
       emailAddress: '',
       password: '',
@@ -144,9 +144,12 @@ export default function RegisterForm() {
                     <FormLabel>
                       <p className="text-left text-l">Tipo de documento</p>
                     </FormLabel>
-                    <Select onValueChange={field.onchange}>
+                    <Select
+                      onValueChange={field.onchange}
+                      defaultValue={field.value}
+                    >
                       <FormControl>
-                        <SelectTrigger {...field} className="grow-0 w-[120px]">
+                        <SelectTrigger className="grow-0 w-[120px]">
                           <SelectValue placeholder="Seleccionar" />
                         </SelectTrigger>
                       </FormControl>
