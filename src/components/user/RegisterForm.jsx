@@ -64,7 +64,7 @@ export default function RegisterForm() {
     defaultValues: {
       firstName: '',
       lastName: '',
-      idType: '',
+      idType: 'CC',
       idNumber: '',
       emailAddress: '',
       password: '',
@@ -144,6 +144,7 @@ export default function RegisterForm() {
                     <FormLabel>
                       <p className="text-left text-l">Tipo de documento</p>
                     </FormLabel>
+                    {/* Fix document id selection */}
                     <Select
                       onValueChange={field.onchange}
                       defaultValue={field.value}
