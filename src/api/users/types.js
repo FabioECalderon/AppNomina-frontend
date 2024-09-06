@@ -2,8 +2,12 @@ import { z } from 'zod';
 
 export const UserOutput = z
   .object({
-    firstName: z.string(),
-    lastName: z.string(),
+    first_name: z.string(),
+    last_name: z.string(),
     email: z.string(),
+    document: z.string(),
+    document_type: z.string(),
+    password: z.string(),
+    photo: z.string(),
   })
   .strict();
